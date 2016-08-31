@@ -1,0 +1,18 @@
+{
+    "name": "huzhihao/sat",
+    "description": "A library performing collision detection of simple 2D shapes with  Separating Axis Theorem.",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+          "name": "huzhihao",
+          "email": "whahuzhihao@126.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "SAT\\": "src"
+      }
+    }
+}
