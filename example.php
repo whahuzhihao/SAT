@@ -47,3 +47,8 @@ $c1 = new Circle(new Vector(0,0), 1/sqrt(2));
 $r->clear();
 var_dump(Collision::testPolygonCircle($p1, $c1, $r));
 dumpR($r);
+
+$c2 = new Circle(new Vector(-0.1,0), 1/sqrt(2));
+var_dump(Collision::testPolygonCircle($p1, $c2, $r));
+
+//

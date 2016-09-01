@@ -181,7 +181,7 @@ abstract class Collision
             $response->aInB = $response->bInA;
             $response->bInA = $aInB;
         }
-        return result;
+        return $result;
     }
 
     /**
