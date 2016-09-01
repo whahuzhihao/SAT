@@ -95,6 +95,6 @@ dumpR($r);
 ```
 
 ## P.S.
-For more details such as the properties of each class's, please read the original Javascript library's [document](https://github.com/jriecken/sat-js).
+For more details such as the properties of each class, please read the original Javascript library's [document](https://github.com/jriecken/sat-js).
 
 
