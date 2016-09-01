@@ -1,16 +1,21 @@
 {
     "name": "huzhihao/sat",
-    "description": "A library performing collision detection of simple 2D shapes with  Separating Axis Theorem.",
+    "description": "A library performing collision detection of simple 2D shapes with Separating Axis Theorem.",
+    "keywords": ["2d", "collision", "SAT", "Separating Axis Theorem"],
     "license": "MIT",
+    "homepage": "https://github.com/whahuzhihao/SAT",
     "minimum-stability": "dev",
     "type": "library",
     "authors": [
         {
           "name": "huzhihao",
-          "email": "whahuzhihao@126.com"
+          "email": "whahuzhihao@126.com",
+          "homepage": "http://www.bewithyou.me",
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=5.3.0"
+    },
     "autoload": {
         "psr-4": {
             "SAT\\": "src"
