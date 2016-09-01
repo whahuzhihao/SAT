@@ -21,7 +21,7 @@ $circle = new Circle(new Vector(1, 1), 1);
 var_dump(Collision::pointInCircle($point, $circle));
 
 //pointInPolygon
-$point = new Vector(1, 2);
+$point = new Vector(1, 2.1);
 $polygon = new Polygon(null, array(new Vector(3,1), new Vector(3,2), new Vector(2,3), new Vector(1,2),new Vector(1,1),new Vector(2,0)));
 var_dump(Collision::pointInPolygon($point, $polygon));
 
@@ -42,8 +42,8 @@ var_dump(Collision::testCircleCircle($c1, $c4, $r));
 dumpR($r);
 
 //testPolygonCircle
-$p1 = new Polygon(new Vector(-1,0), array(new Vector(3,1), new Vector(3,2), new Vector(2,3), new Vector(1,2),new Vector(1,1),new Vector(2,0)));
-$c1 = new Circle(new Vector(0,0),1/sqrt(2));
+$p1 = new Polygon(new Vector(-1, 0), array(new Vector(3,1), new Vector(3,2), new Vector(2,3), new Vector(1,2),new Vector(1,1),new Vector(2,0)));
+$c1 = new Circle(new Vector(0,0), 1/sqrt(2));
 $r->clear();
 var_dump(Collision::testPolygonCircle($p1, $c1, $r));
 dumpR($r);
