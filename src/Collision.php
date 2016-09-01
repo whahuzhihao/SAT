@@ -168,7 +168,7 @@ abstract class Collision
      * @param Response $response
      * @return mixed
      */
-    public function testCirclePolygon(Circle $circle, Polygon $polygon, Response &$response)
+    public static function testCirclePolygon(Circle $circle, Polygon $polygon, Response &$response)
     {
         $result = self::testPolygonCircle($polygon, $circle, $response);
         if ($result && $response) {

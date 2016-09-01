@@ -51,4 +51,28 @@ dumpR($r);
 $c2 = new Circle(new Vector(-0.1,0), 1/sqrt(2));
 var_dump(Collision::testPolygonCircle($p1, $c2, $r));
 
-//
+$r->clear();
+$c3 = new Circle(new Vector(1,1.5), 1);
+var_dump(Collision::testPolygonCircle($p1, $c3, $r));
+dumpR($r);
+
+//testCirclePolygon
+$r->clear();
+var_dump(Collision::testCirclePolygon($c1, $p1, $r));
+dumpR($r);
+
+$r->clear();
+var_dump(Collision::testCirclePolygon($c3, $p1, $r));
+dumpR($r);
+
+$c4 = new Circle(new Vector(1, 1.5), 1.5);
+$r->clear();
+var_dump(Collision::testCirclePolygon($c4, $p1, $r));
+dumpR($r);
+
+//testPolygonPolygon
+$p1 = new Polygon(new Vector(-1, 0), array(new Vector(3,1), new Vector(3,2), new Vector(2,3), new Vector(1,2),new Vector(1,1),new Vector(2,0)));
+$p2 = new Polygon(new Vector(-0.5, 0.5), array(new Vector(3,1), new Vector(3,2), new Vector(2,3), new Vector(1,2),new Vector(1,1),new Vector(2,0)));
+$r->clear();
+var_dump(Collision::testPolygonPolygon($p1, $p2, $r));
+dumpR($r);
