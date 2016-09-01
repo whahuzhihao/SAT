@@ -12,6 +12,12 @@ class Polygon
     public $edges;
     public $normals;
 
+    /**
+     * @param Vector $pos representing the origin of the polygon. (all other
+     *   points are relative to this one)
+     * @param array $points An array of vectors representing the points in the polygon,
+     *   in counter-clockwise order.
+     */
     public function __construct(Vector $pos = null, $points = array())
     {
         $this->pos = $pos ? $pos : new Vector();

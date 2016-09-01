@@ -3,6 +3,7 @@
     "description": "A library performing collision detection of simple 2D shapes with  Separating Axis Theorem.",
     "license": "MIT",
     "minimum-stability": "dev",
+    "type": "library",
     "authors": [
         {
           "name": "huzhihao",

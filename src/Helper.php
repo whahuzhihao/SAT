@@ -83,7 +83,7 @@ abstract class Helper
             $absOverlap = abs($overlap);
             if ($absOverlap < $response->overlap) {
                 $response->overlap = $absOverlap;
-                $response->overlapN = clone axis;
+                $response->overlapN = clone $axis;
                 if ($overlap < 0) {
                     $response->overlapN->reverse();
                 }

@@ -6,6 +6,11 @@ class Box {
     public $w;
     public $h;
 
+    /**
+     * @param Vector $pos A vector representing the bottom-left of the box (i.e. the smallest x and smallest y value).
+     * @param int $w The width of the box.
+     * @param int $h The height of the box.
+     */
     public function __construct(Vector $pos = null, $w = 0, $h = 0){
         $this->pos = $pos ? $pos : new Vector();
         $this->w = $w;

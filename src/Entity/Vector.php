@@ -5,6 +5,10 @@ class Vector {
     public $x;
     public $y;
 
+    /**
+     * @param int $x The x position.
+     * @param int $y The y position.
+     */
     public function __construct($x = 0, $y = 0){
         $this->x = $x;
         $this->y = $y;
@@ -85,7 +89,7 @@ class Vector {
      */
     public function scale($x, $y = 0){
         $this->x *= $x;
-        $this->y *= $y || $x;
+        $this->y *= $y ? $y : $x;
         return $this;
     }
 

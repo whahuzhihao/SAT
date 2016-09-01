@@ -5,6 +5,10 @@ class Circle {
     public $pos;
     public $r;
 
+    /**
+     * @param Vector $pos A vector representing the position of the center of the circle
+     * @param int $r The radius of the circle
+     */
     public function __construct(Vector $pos = null, $r = 0){
         $this->pos = $pos ? $pos : new Vector();
         $this->r = $r;
