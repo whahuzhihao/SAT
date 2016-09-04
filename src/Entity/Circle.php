@@ -15,6 +15,7 @@ class Circle {
     }
 
     /**
+     * 计算圆的外接矩形
      * Compute the axis-aligned bounding box.
      * @return Box
      */

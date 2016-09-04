@@ -25,6 +25,7 @@ abstract class Collision
     }
 
     /**
+     * TODO Here is a bug.
      * Check if a point is inside a convex polygon.
      * @param Vector $p
      * @param Polygon $poly
@@ -90,6 +91,7 @@ abstract class Collision
         $radius2 = $radius * $radius;
         $points = $polygon->calcPoints;
         $len = count($points);
+        //遍历每一条边
         for ($i = 0; $i < $len; $i++) {
             $next = $i === $len - 1 ? 0 : $i + 1;
             $prev = $i === 0 ? $len - 1 : $i - 1;

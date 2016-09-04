@@ -132,6 +132,7 @@ class Polygon
     }
 
     /**
+     * 计算外接矩形
      * Compute the axis-aligned bounding box.
      * @return Box
      */

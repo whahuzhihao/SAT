@@ -26,6 +26,7 @@ class Vector {
     }
 
     /**
+     * 逆时针旋转弧度
      * Rotate this vector counter-clockwise by the specified number of radians.
      * @param $angle
      * @return mixed
@@ -47,6 +48,7 @@ class Vector {
     }
 
     /**
+     * 把向量归一化
      * Make the Vector unit-lengthed.
      * @return $this
      */
@@ -82,18 +84,20 @@ class Vector {
     }
 
     /**
+     * 拉伸向量
      * Scale this Vector in the X and Y directions.
      * @param $x
      * @param $y
      * @return $this
      */
-    public function scale($x, $y = 0){
+    public function scale($x, $y = null){
         $this->x *= $x;
-        $this->y *= $y ? $y : $x;
+        $this->y *= $y !== null ? $y : $x;
         return $this;
     }
 
     /**
+     * 把本向量投影在另外一个向量方向上 c = a · b /|b| * b
      * Project this Vector onto another one.
      * @param Vector $other
      * @return $this
@@ -106,6 +110,7 @@ class Vector {
     }
 
     /**
+     * 把本向量投影在一个单位向量上 c = a * b / 1 * b
      * Project this Vector onto a unit Vector.
      * @param Vector $other
      * @return $this
@@ -118,6 +123,7 @@ class Vector {
     }
 
     /**
+     * 把向量按另一个向量的法线向量做对称 2(b(a·b/|b|)) - a
      * Reflect this Vector on an arbitrary axis Vector.
      * @param Vector $axis
      * @return $this
@@ -132,6 +138,7 @@ class Vector {
     }
 
     /**
+     * 同上 b换成单位向量
      * Reflect this Vector on an arbitrary axis unit Vector.
      * @param Vector $axis
      * @return $this
@@ -146,6 +153,7 @@ class Vector {
     }
 
     /**
+     * 点乘 a · b = x1x2+y1y2
      * Get the dot product of this Vector and another.
      * @param Vector $other
      * @return int

@@ -93,6 +93,7 @@ abstract class Helper
     }
 
     /**
+     * 点在线的哪一边 line=AB point=AC x=point · line (x<0钝角在左边) (0<x<=|line|^2在线中间区域) (x>|line|^2在线右边)
      * Calculates which Voronoi region a point is on a line segment.
      * @param Vector $line
      * @param Vector $point
