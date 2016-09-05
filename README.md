@@ -8,9 +8,7 @@ Simply translated from a [Javascript library](https://github.com/jriecken/sat-js
 * PHP version 5.3.0 or higher
 
 ## Installation
-_TODO Publishing A Package To Composer_
-
-<!--`composer require huzhihao/sat` and then require the Composer autoloader from your code.-->
+`composer require huzhihao/sat:dev-master` and then require the Composer autoloader from your code.
 
 ## Usage
 Here are the examples to show how SAT works. To check whether two shapes collide, you can use `SAT\Collision::XXX` functions. And a `Response` object will be given to check whether one shape is completely covered by the other.  
