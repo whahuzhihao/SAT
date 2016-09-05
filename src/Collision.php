@@ -25,22 +25,52 @@ abstract class Collision
     }
 
     /**
-     * TODO Here is a bug.
      * Check if a point is inside a convex polygon.
      * @param Vector $p
      * @param Polygon $poly
      * @return mixed
      */
-    public static function pointInPolygon(Vector $p, Polygon $poly)
+    public static function pointInPolygon(Vector $point, Polygon $poly)
     {
-        $UNIT_SQUARE = (new Box(new Vector(), 1, 1))->toPolygon();
-        $UNIT_SQUARE->pos = clone $p;
-        $T_RESPONSE = new Response();
-        $result = self::testPolygonPolygon($UNIT_SQUARE, $poly, $T_RESPONSE);
-        if ($result) {
-            $result = $T_RESPONSE->aInB;
+        //BUG CODE
+//        $UNIT_SQUARE = (new Box(new Vector(), 1, 1))->toPolygon();
+//        $UNIT_SQUARE->pos = clone $point;
+//        $T_RESPONSE = new Response();
+//        $result = self::testPolygonPolygon($UNIT_SQUARE, $poly, $T_RESPONSE);
+//        if ($result) {
+//            $result = $T_RESPONSE->aInB;
+//        }
+//        return $result;
+        $len = count($poly->calcPoints);
+        $p = clone $point;
+        $p->sub($poly->pos);
+        $j = $len - 1;
+        $flag = false;
+        for ($i = 0; $i < $len; $i++) {
+            $p1 = $poly->calcPoints[$i];
+            $p2 = $poly->calcPoints[$j];
+            if ($p1->x == $p->x && $p1->y == $p->y) {
+                return true;
+            }
+            if ($p2->x == $p->x && $p2->y == $p->y) {
+                return true;
+            }
+            // 判断线段两端点是否在射线两侧
+            if (($p1->y < $p->y && $p2->y >= $p->y) || ($p1->y >= $p->y && $p2->y < $p->y)) {
+                // 线段上与射线 Y 坐标相同的点的 X 坐标
+                $x = $p1->x + ($p->y - $p1->y) * ($p2->x - $p1->x) / ($p2->y - $p1->y);
+                // 点在多边形的边上
+                if ($x === $p->x) {
+                    return true;
+                }
+                // 射线穿过多边形的边界
+                if ($x > $p->x) {
+                    $flag = !$flag;
+                }
+            }
+            $j = $i;
         }
-        return $result;
+        return $flag;
     }
 
     /**
@@ -91,7 +121,7 @@ abstract class Collision
         $radius2 = $radius * $radius;
         $points = $polygon->calcPoints;
         $len = count($points);
-        //遍历每一条边
+        //遍历每一条边 只重点判断肯定不相交的情况
         for ($i = 0; $i < $len; $i++) {
             $next = $i === $len - 1 ? 0 : $i + 1;
             $prev = $i === 0 ? $len - 1 : $i - 1;
@@ -105,28 +135,35 @@ abstract class Collision
             }
 
             $region = Helper::voronoiRegion($edge, $point);
+            //圆心在边的左边
             if ($region === Helper::LEFT_VORONOI_REGION) {
                 $edge = clone $polygon->edges[$prev];
                 $point2 = clone $circlePos;
                 $point2->sub($points[$prev]);
                 $region = Helper::voronoiRegion($edge, $point2);
+                //圆心在上一条边的右边
                 if ($region === Helper::RIGHT_VORONOI_REGION) {
                     $dist = $point->len();
+                    //圆心到这条边和上一条边公共点的距离 如果大于半径 则不相交
                     if ($dist > $radius) {
                         return false;
                     } else if ($response) {
+                        //否则相交 但是圆肯定不在多边形内部
                         $response->bInA = false;
                         $overlapN = $point->normalize();
                         $overlap = $radius - $dist;
                     }
                 }
+                //圆心在这条边的右边
             } else if ($region === Helper::RIGHT_VORONOI_REGION) {
                 $edge = clone $polygon->edges[$next];
                 $point = clone $circlePos;
                 $point->sub($points[$next]);
+                //圆心在下一条边的左边
                 $region = Helper::voronoiRegion($edge, $point);
                 if ($region === Helper::LEFT_VORONOI_REGION) {
                     $dist = $point->len();
+                    //圆心到公共点的距离大于半径 不相交
                     if ($dist > $radius) {
                         return false;
                     } else if ($response) {
@@ -136,14 +173,18 @@ abstract class Collision
                     }
                 }
             } else {
+                //圆心在边的中间 求边的单位法向量
                 $normal = $edge->perp()->normalize();
                 $dist = $point->dot($normal);
                 $distAbs = abs($dist);
+                //圆心到边的距离=abs(point · normal) 如果dist>0则说明圆心在边的外侧
+                //如果距离大于半径 则不相交
                 if ($dist > 0 && $distAbs > $radius) {
                     return false;
                 } else if ($response) {
                     $overlapN = $normal;
                     $overlap = $radius - $dist;
+                    //如果圆心在边外侧或者有一部分圆在边外侧 则圆肯定不在多边形内部
                     if ($dist >= 0 || $overlap < 2 * $radius) {
                         $response->bInA = false;
                     }
