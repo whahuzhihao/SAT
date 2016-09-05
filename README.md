@@ -41,7 +41,10 @@ $point = new Vector(1, 2.1);
 $polygon = new Polygon(null, array(new Vector(3,1), new Vector(3,2), new Vector(2,3), new Vector(1,2),new Vector(1,1),new Vector(2,0)));
 var_dump(Collision::pointInPolygon($point, $polygon));
 
-$point = new Vector(0.9, 1);
+$polygon = new Polygon(new Vector(-1,-1),array(new Vector(1,1),new Vector(1.5,1.5),new Vector(2,1),new Vector(2,2),new Vector(3,2),new Vector(1.5,4),new Vector(1,3),new Vector(1.5,3)));
+$point = new Vector(1, 2);
+var_dump(Collision::pointInPolygon($point, $polygon));
+$point = new Vector(1, 2.5);
 var_dump(Collision::pointInPolygon($point, $polygon));
 
 //testCircleCircle
