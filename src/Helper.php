@@ -2,6 +2,7 @@
 namespace SAT;
 
 use SAT\Entity\Vector;
+use SAT\Entity\Response;
 
 abstract class Helper
 {
@@ -38,7 +39,7 @@ abstract class Helper
      * @param $response
      * @return bool
      */
-    public static function isSeparatingAxis(Vector $aPos, Vector $bPos, $aPoints, $bPoints, Vector $axis, &$response)
+    public static function isSeparatingAxis(Vector $aPos, Vector $bPos, $aPoints, $bPoints, Vector $axis, Response &$response = null)
     {
         $rangeA = array();
         $rangeB = array();

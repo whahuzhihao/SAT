@@ -80,7 +80,7 @@ abstract class Collision
      * @param Response $response
      * @return bool
      */
-    public static function testCircleCircle(Circle $a, Circle $b, Response &$response)
+    public static function testCircleCircle(Circle $a, Circle $b, Response &$response = null)
     {
         $differenceV = clone ($b->pos);
         $differenceV->sub($a->pos);
@@ -113,7 +113,7 @@ abstract class Collision
      * @param Response $response
      * @return bool
      */
-    public static function testPolygonCircle(Polygon $polygon, Circle $circle, Response &$response)
+    public static function testPolygonCircle(Polygon $polygon, Circle $circle, Response &$response = null)
     {
         $circlePos = clone ($circle->pos);
         $circlePos->sub($polygon->pos);
@@ -211,7 +211,7 @@ abstract class Collision
      * @param Response $response
      * @return mixed
      */
-    public static function testCirclePolygon(Circle $circle, Polygon $polygon, Response &$response)
+    public static function testCirclePolygon(Circle $circle, Polygon $polygon, Response &$response = null)
     {
         $result = self::testPolygonCircle($polygon, $circle, $response);
         if ($result && $response) {
@@ -234,7 +234,7 @@ abstract class Collision
      * @param Response $response
      * @return bool
      */
-    public static function testPolygonPolygon(Polygon $a, Polygon $b, Response &$response)
+    public static function testPolygonPolygon(Polygon $a, Polygon $b, Response &$response = null)
     {
         $aPoints = $a->calcPoints;
         $aLen = count($aPoints);
